@@ -1,0 +1,22 @@
+system:
+    appName: openai-wechat
+    pidFile: config/bin/openai-wechat.lock
+
+logger:
+  level: info
+  encoding: console
+  directory: ./config/logs
+  max-age: 14
+  show-line: true
+  log-in-console: true
+
+open-ai:
+  api-key: ""
+  base-url: ""
+
+wx-robot:
+  use-robot: true
+  autopass: true
+  sessiontimeout: 900
+  storagePath: config/storage.json
+  retryNum: 3
