@@ -49,7 +49,7 @@ wx-robot:
 
 ## 命令使用教程
 - ./openai-wechat(文件名) start  启动应用
-- ./openai-wechat(文件名) start -d 后台启动引用
+- ./openai-wechat(文件名) start -d 后台启动应用
 - ./openai-wechat(文件名) --config config/config.yaml start -d 指定配置文件启动
 - ./openai-wechat(文件名) status 查看应用启动情况
 - ./openai-wechat(文件名) stop 关闭应用
