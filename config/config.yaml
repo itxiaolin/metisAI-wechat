@@ -12,11 +12,10 @@ logger:
 
 open-ai:
   api-key: ""
-  base-url: ""
+  base-url: https://free.churchless.tech/v1
 
 wx-robot:
-  use-robot: true
-  autopass: true
-  sessiontimeout: 900
-  storagePath: config/storage.json
-  retryNum: 3
+  auto-pass: true
+  session-timeout: 900
+  storage-path: config/storage.json
+  retry-num: 3

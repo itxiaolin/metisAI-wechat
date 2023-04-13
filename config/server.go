@@ -20,8 +20,8 @@ type OpenAI struct {
 }
 
 type WxRobot struct {
-	AutoPass       bool   `mapstructure:"autoPass" yaml:"autoPass"`
-	SessionTimeout int64  `mapstructure:"sessionTimeout" yaml:"sessionTimeout"`
-	StoragePath    string `mapstructure:"storagePath" yaml:"storagePath"`
-	RetryNum       int    `mapstructure:"retryNum" yaml:"retryNum"`
+	AutoPass       bool   `mapstructure:"autoPass" yaml:"auto-pass"`
+	SessionTimeout int64  `mapstructure:"sessionTimeout" yaml:"session-timeout"`
+	StoragePath    string `mapstructure:"storagePath" yaml:" storage-path"`
+	RetryNum       int    `mapstructure:"retryNum" yaml:"retry-num"`
 }
