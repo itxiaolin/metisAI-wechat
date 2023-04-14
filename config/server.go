@@ -29,8 +29,13 @@ type WxRobot struct {
 	ChatGPTSystemRole  string             `mapstructure:"chatGPT-system-role" yaml:"chatGPT-system-role"` //ChatGPT自定义角色
 	ChatGPTModel       string             `mapstructure:"chatGPT-model" yaml:"chatGPT-model"`             //ChatGPT模型
 	RobotKeywordPrompt RobotKeywordPrompt `mapstructure:"robot-keyword-prompt" yaml:"robot-keyword-prompt"`
+	Voice              Voice              `mapstructure:"voice" yaml:"voice"`
 }
 
 type RobotKeywordPrompt struct {
 	ImagePrompt string `mapstructure:"image-prompt" yaml:"image-prompt"` //生成图片
+}
+
+type Voice struct {
+	voiceDir string `mapstructure:"voice-dir" yaml:"voice-dir"` //录音文件临时目录
 }

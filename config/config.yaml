@@ -25,5 +25,6 @@ wx-robot:
     chatGPT-model: "gpt-3.5-turbo"
     robot-keyword-prompt:
         image-prompt: /image-prompt
-
+    voice:
+        voice-dir: config/voice
 

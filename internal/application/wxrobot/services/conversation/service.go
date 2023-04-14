@@ -3,9 +3,11 @@ package conversation
 import (
 	"bytes"
 	"context"
+	"fmt"
 	"github.com/go-resty/resty/v2"
 	"github.com/itxiaolin/openai-wechat/internal/core/logger"
 	"github.com/itxiaolin/openai-wechat/internal/global"
+	"os"
 	"sync"
 	"time"
 
@@ -18,6 +20,7 @@ import (
 type ConversationService interface {
 	WxChatCompletion(index int, msg *openwechat.Message, atText string, messages []openai.ChatCompletionMessage) (string, error)
 	ImagesCompletion(msg *openwechat.Message, atText, content string) (err error)
+	Voice2TextCompletion(msg *openwechat.Message) (content string, err error)
 }
 
 var wxChatOnce sync.Once
@@ -77,7 +80,7 @@ func (s *conversationService) ImagesCompletion(msg *openwechat.Message, atText, 
 		return err
 	}
 	url := response.Data[0].URL
-	if _, err = msg.ReplyText(atText + "chatGPT生成图片: " + url); err != nil {
+	if _, err = msg.ReplyText(fmt.Sprintf("%s %s: %s", atText, content, url)); err != nil {
 		logger.Error(ctx, "response group error", zap.Error(err))
 		return err
 	}
@@ -87,4 +90,36 @@ func (s *conversationService) ImagesCompletion(msg *openwechat.Message, atText, 
 		_, _ = msg.ReplyImage(reader)
 	}
 	return nil
+}
+
+func (s *conversationService) Voice2TextCompletion(msg *openwechat.Message) (content string, err error) {
+	voiceResp, err := msg.GetVoice()
+	if err != nil {
+		logger.Error(nil, "获取语音消息异常", zap.Error(err))
+	}
+	logger.Info(nil, "获取语言消息成功", zap.String("status", voiceResp.Status))
+	defer func() { _ = voiceResp.Body.Close() }()
+	_ = os.MkdirAll("config/voice", os.FileMode(0755))
+	filePath := fmt.Sprintf("config/voice/%s.mp3", msg.MsgId)
+	err = msg.SaveFileToLocal(filePath)
+	if err != nil {
+		logger.Error(nil, "将语言保存到文件异常", zap.Error(err))
+		return "", err
+	}
+	c := tpOpenai.Instance()
+	ctx := context.Background()
+	req := openai.AudioRequest{
+		Model:       openai.Whisper1,
+		FilePath:    filePath,
+		Temperature: 0.5,
+	}
+	TranscriptionResp, err := c.CreateTranscription(ctx, req)
+	_ = os.Remove(filePath)
+	if err != nil {
+		logger.Error(ctx, "通过openai的whisper-1模型转化语言失败", zap.Error(err))
+		return
+	}
+	content = TranscriptionResp.Text
+	logger.Info(ctx, "通过openai的whisper-1模型转化语言成功", zap.String("内容", content))
+	return
 }

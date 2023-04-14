@@ -23,6 +23,9 @@ func (g *UserMessageHandler) handle(msg *openwechat.Message) error {
 	if msg.IsText() {
 		return g.ReplyText(msg)
 	}
+	if msg.IsVoice() {
+		return g.ReplyVoice(msg)
+	}
 	return nil
 }
 
@@ -53,10 +56,30 @@ func (g *UserMessageHandler) ReplyText(msg *openwechat.Message) error {
 	if global.Config.WxRobot.RobotKeywordPrompt.ImagePrompt != "" && strings.HasPrefix(requestText, global.Config.WxRobot.RobotKeywordPrompt.ImagePrompt) {
 		return conversation.Instance().ImagesCompletion(msg, "", content)
 	}
-	completionMessages := user.Instance().BuildMessages(contextKey, systemContent, requestText)
-	logger.Info(nil, fmt.Sprintf("request chatGPT by userId: %v ,requestText: %v",
-		sender.NickName, requestText))
+	err = g.replyMsg(msg, contextKey, content)
+	if err != nil {
+		return err
+	}
+	return nil
+}
 
+func (g *UserMessageHandler) ReplyVoice(msg *openwechat.Message) error {
+	content, err := conversation.Instance().Voice2TextCompletion(msg)
+	if err != nil {
+		return err
+	}
+	sender, _ := msg.Sender()
+	self, _ := msg.Bot().GetCurrentUser()
+	contextKey := self.ID() + "-" + sender.UserName
+	err = g.replyMsg(msg, contextKey, content)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (g *UserMessageHandler) replyMsg(msg *openwechat.Message, contextKey string, content string) error {
+	completionMessages := user.Instance().BuildMessages(contextKey, systemContent, content)
 	reply, err := conversation.Instance().WxChatCompletion(global.Config.WxRobot.RetryNum, msg, "", completionMessages)
 	if err != nil || reply == "" {
 		logger.Error(nil, "gpt request error", zap.Error(err))
@@ -66,9 +89,10 @@ func (g *UserMessageHandler) ReplyText(msg *openwechat.Message) error {
 		}
 		return err
 	}
-	user.Instance().SetUserSessionContext(contextKey, requestText, reply)
+	user.Instance().SetUserSessionContext(contextKey, content, reply)
 	if err != nil {
 		logger.Error(nil, "response user error", zap.Error(err))
+		return err
 	}
-	return err
+	return nil
 }
