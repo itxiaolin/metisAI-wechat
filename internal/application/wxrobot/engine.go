@@ -28,8 +28,10 @@ func (r *robotEngine) GracefullyShutdown() {
 
 func (r *robotEngine) Process() {
 	r.bot = r.DefaultBot(openwechat.Desktop)
-	if global.Config.WxRobot.StoragePath != "" &&
-		r.bot.HotLogin(openwechat.NewFileHotReloadStorage(global.Config.WxRobot.StoragePath)) == nil {
+	storagePath := global.Config.WxRobot.StoragePath
+	logger.Info(nil, "热登录文件", zap.String("StoragePath", storagePath))
+	if storagePath != "" &&
+		r.bot.HotLogin(openwechat.NewFileHotReloadStorage(storagePath)) == nil {
 		user, _ := r.bot.GetCurrentUser()
 		handlers.BotLoginTimeMap[r.bot.UUID()] = time.Now().Unix()
 		logger.Info(nil, "热登录成功", zap.Any("用户名", user.NickName))
@@ -61,6 +63,10 @@ func (r *robotEngine) DefaultBot(prepares ...openwechat.BotPreparer) *openwechat
 	// 心跳回调函数,默认的行为打印SyncCheckResponse
 	bot.SyncCheckCallback = func(resp openwechat.SyncCheckResponse) {
 		logger.Info(nil, "心跳函数，", zap.String("uuid", bot.UUID()), zap.String("RetCode", resp.RetCode))
+		if resp.RetCode == "1101" {
+			logger.Error(nil, "机器人已掉线，主动退出登录")
+			_ = bot.Logout()
+		}
 	}
 	for _, prepare := range prepares {
 		prepare.Prepare(bot)

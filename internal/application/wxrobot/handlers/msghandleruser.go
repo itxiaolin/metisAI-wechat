@@ -38,6 +38,11 @@ func (g *UserMessageHandler) ReplyText(msg *openwechat.Message) error {
 	logger.Debug(nil, fmt.Sprintf("Received User %v Text Msg : %v", sender.NickName, msg.Content))
 	content := strings.TrimSpace(msg.Content)
 	contextKey := self.ID() + "-" + sender.UserName
+	requestText := strings.Trim(strings.TrimSpace(msg.Content), "\n")
+	if requestText == "" {
+		_, err = msg.ReplyText("很抱歉，我不太明白您想表达什么，请您再提供更多的信息或者问题，让我能够更好地为您服务。")
+		return nil
+	}
 	if user.Instance().ClearUserSessionContext(contextKey, content) {
 		_, err = msg.ReplyText("上下文已经清空了，你可以问下一个问题啦。")
 		if err != nil {
@@ -45,10 +50,8 @@ func (g *UserMessageHandler) ReplyText(msg *openwechat.Message) error {
 		}
 		return nil
 	}
-	requestText := strings.TrimSpace(msg.Content)
-	requestText = strings.Trim(msg.Content, "\n")
-	if requestText == "" {
-		return nil
+	if global.Config.WxRobot.RobotKeywordPrompt.ImagePrompt != "" && strings.HasPrefix(requestText, global.Config.WxRobot.RobotKeywordPrompt.ImagePrompt) {
+		return conversation.Instance().ImagesCompletion(msg, "", content)
 	}
 	completionMessages := user.Instance().BuildMessages(contextKey, systemContent, requestText)
 	logger.Info(nil, fmt.Sprintf("request chatGPT by userId: %v ,requestText: %v",

@@ -20,8 +20,17 @@ type OpenAI struct {
 }
 
 type WxRobot struct {
-	AutoPass       bool   `mapstructure:"autoPass" yaml:"auto-pass"`
-	SessionTimeout int64  `mapstructure:"sessionTimeout" yaml:"session-timeout"`
-	StoragePath    string `mapstructure:"storagePath" yaml:" storage-path"`
-	RetryNum       int    `mapstructure:"retryNum" yaml:"retry-num"`
+	AutoPass           bool               `mapstructure:"auto-pass" yaml:"auto-pass"`                     //是否自动通过好友请求
+	StoragePath        string             `mapstructure:"storage-path" yaml:" storage-path"`              //热登录缓存位置
+	SessionTimeout     int64              `mapstructure:"session-timeout" yaml:"session-timeout"`         //上下文过期时间
+	ContextCacheNum    int                `mapstructure:"context-cache-num" yaml:"context-cache-num"`     //上下文缓存数量
+	ResetContextKey    string             `mapstructure:"reset-context-key" yaml:"reset-context-key"`     //重置上下文
+	RetryNum           int                `mapstructure:"retry-num" yaml:"retry-num"`                     //chatgpt请求异常重试次数
+	ChatGPTSystemRole  string             `mapstructure:"chatGPT-system-role" yaml:"chatGPT-system-role"` //ChatGPT自定义角色
+	ChatGPTModel       string             `mapstructure:"chatGPT-model" yaml:"chatGPT-model"`             //ChatGPT模型
+	RobotKeywordPrompt RobotKeywordPrompt `mapstructure:"robot-keyword-prompt" yaml:"robot-keyword-prompt"`
+}
+
+type RobotKeywordPrompt struct {
+	ImagePrompt string `mapstructure:"image-prompt" yaml:"image-prompt"` //生成图片
 }

@@ -37,7 +37,10 @@ type UserServiceImpl struct {
 
 // ClearUserSessionContext 清空GTP上下文，接收文本中包含`我要问下一个问题`，并且Unicode 字符数量不超过20就清空
 func (s *UserServiceImpl) ClearUserSessionContext(userId string, msg string) bool {
-	if strings.Contains(msg, "清除上下文") && utf8.RuneCountInString(msg) < 20 {
+	if global.Config.WxRobot.ResetContextKey == "" {
+		return false
+	}
+	if strings.Contains(msg, global.Config.WxRobot.ResetContextKey) && utf8.RuneCountInString(msg) < 20 {
 		s.cache.Delete(userId)
 		return true
 	}
@@ -47,7 +50,11 @@ func (s *UserServiceImpl) ClearUserSessionContext(userId string, msg string) boo
 // GetUserSessionContext 获取用户会话上下文文本
 func (s *UserServiceImpl) GetUserSessionContext(userId string) *domains.ChatCompletionMessageQueue {
 	sessionContext, ok := s.cache.Get(userId)
+
 	if !ok {
+		if global.Config.WxRobot.ContextCacheNum > 0 {
+			return domains.NewFixedQueue(global.Config.WxRobot.ContextCacheNum)
+		}
 		return domains.NewFixedQueue(10)
 	}
 	queue := sessionContext.(*domains.ChatCompletionMessageQueue)

@@ -60,6 +60,9 @@ func (g *GroupMessageHandler) ReplyText(msg *openwechat.Message) error {
 	if msgContent == "" {
 		return nil
 	}
+	if global.Config.WxRobot.RobotKeywordPrompt.ImagePrompt != "" && strings.HasPrefix(msgContent, global.Config.WxRobot.RobotKeywordPrompt.ImagePrompt) {
+		return conversation.Instance().ImagesCompletion(msg, atText, content)
+	}
 	completionMessages := user.Instance().BuildMessages(contextKey, systemContent, msgContent)
 	logger.Info(nil, fmt.Sprintf("request chatGPT by group: %v, NickName:%s ,requestText: %v",
 		group.NickName, groupSender.NickName, msgContent), zap.String("UserName", groupSender.UserName))
