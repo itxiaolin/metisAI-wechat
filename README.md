@@ -7,6 +7,38 @@
 - 图片生成: 支持根据描述生成图片，默认前缀/image-prompt，支持修改配置
 - 语音识别: 支持私聊接收和处理语音消息，通过文字回复
 
+# 使用效果
+## 私聊
+
+### 帮助指令
+<img width="760" alt="image" src="https://user-images.githubusercontent.com/66697106/232194591-e9be7c35-5007-4ad4-a15d-16580c374d46.png">
+
+### 角色设定
+<img width="756" alt="image" src="https://user-images.githubusercontent.com/66697106/232194639-838ffeac-bd9e-4b72-9174-a06e89df021f.png">
+
+### 重置上下文
+<img width="757" alt="image" src="https://user-images.githubusercontent.com/66697106/232194671-30fbaa11-c38f-4cbf-94fc-dbf87d6eadbc.png">
+
+### 图片生成
+<img width="746" alt="image" src="https://user-images.githubusercontent.com/66697106/232195390-29d459bc-f12b-4b78-9914-aa76d1104722.png">
+
+### 语音识别
+<img width="747" alt="image" src="https://user-images.githubusercontent.com/66697106/232194741-e681e002-e4f4-4236-88a4-c04426877d3b.png">
+
+## 群聊
+### 帮助指令
+<img width="753" alt="image" src="https://user-images.githubusercontent.com/66697106/232195037-e125f452-3fcf-459f-a789-c39df40b890a.png">
+
+### 角色设定
+![image](https://user-images.githubusercontent.com/66697106/232195420-8ff57dcd-39fd-4fae-856f-113c775d0553.png)
+
+### 重置上下文
+<img width="746" alt="image" src="https://user-images.githubusercontent.com/66697106/232195502-2ea5ffef-24a8-4b4e-a419-f044a3ec0547.png">
+
+### 图片生成
+<img width="745" alt="image" src="https://user-images.githubusercontent.com/66697106/232195470-a67f0996-148e-4f39-a225-48ca0cbe1762.png">
+
+
 # 快速开始
 支持 Linux、MacOS、Windows 系统（可在Linux服务器上长期运行),不需安装安装任何环境,如果是本地代码运行，需要安装golang
 
