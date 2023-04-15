@@ -10,7 +10,6 @@
 # 使用效果
 ## 私聊
 ![image](https://user-images.githubusercontent.com/66697106/232195996-fd5cfd40-82ab-4329-95c5-ae828762cba6.png)
-<img width="746" alt="image" src="https://user-images.githubusercontent.com/66697106/232195390-29d459bc-f12b-4b78-9914-aa76d1104722.png">
 
 ## 群聊
 ![image](https://user-images.githubusercontent.com/66697106/232195808-1b2acfe4-01bd-4c79-9ce4-7ca2d2a67da4.png)
