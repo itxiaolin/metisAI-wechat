@@ -26,7 +26,7 @@
 <img width="747" alt="image" src="https://user-images.githubusercontent.com/66697106/232194741-e681e002-e4f4-4236-88a4-c04426877d3b.png">
 
 ## 群聊
-![image](https://user-images.githubusercontent.com/66697106/232195786-57f69811-711a-46d9-b69a-ea86f043eca9.png)
+![image](https://user-images.githubusercontent.com/66697106/232195808-1b2acfe4-01bd-4c79-9ce4-7ca2d2a67da4.png)
 
 # 快速开始
 支持 Linux、MacOS、Windows 系统（可在Linux服务器上长期运行),不需安装安装任何环境,如果是本地代码运行，需要安装golang
