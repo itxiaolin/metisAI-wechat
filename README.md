@@ -26,18 +26,7 @@
 <img width="747" alt="image" src="https://user-images.githubusercontent.com/66697106/232194741-e681e002-e4f4-4236-88a4-c04426877d3b.png">
 
 ## 群聊
-### 帮助指令
-<img width="753" alt="image" src="https://user-images.githubusercontent.com/66697106/232195037-e125f452-3fcf-459f-a789-c39df40b890a.png">
-
-### 角色设定
-![image](https://user-images.githubusercontent.com/66697106/232195420-8ff57dcd-39fd-4fae-856f-113c775d0553.png)
-
-### 重置上下文
-<img width="746" alt="image" src="https://user-images.githubusercontent.com/66697106/232195502-2ea5ffef-24a8-4b4e-a419-f044a3ec0547.png">
-
-### 图片生成
-<img width="745" alt="image" src="https://user-images.githubusercontent.com/66697106/232195470-a67f0996-148e-4f39-a225-48ca0cbe1762.png">
-
+![image](https://user-images.githubusercontent.com/66697106/232195786-57f69811-711a-46d9-b69a-ea86f043eca9.png)
 
 # 快速开始
 支持 Linux、MacOS、Windows 系统（可在Linux服务器上长期运行),不需安装安装任何环境,如果是本地代码运行，需要安装golang
