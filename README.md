@@ -1,11 +1,11 @@
 # 简介
 基于ChatGPT的微信聊天机器人，通过 ChatGPT 接口生成对话内容，使用 openwechat 实现微信消息的接收和自动回复。
 
-- 上下文语境: 支持重置上下文语境，通过关键词(清除上下文)重置对话上下文语境。
+- 上下文语境: 支持重置上下文语境，，通过默认前缀/reset-context重置对话上下文语境。
 - 群聊机器人: 支持在群聊@你的机器人 🤖，@机器人即可收到回复。
-- 角色扮演: 支持自定义chatGPT的system角色，可实现多种风格的机器人
+- 角色扮演: 支持自定义chatGPT的system角色，通过默认前缀/system-role可指定聊天时的角色
 - 图片生成: 支持根据描述生成图片，默认前缀/image-prompt，支持修改配置
-- 语音识别: 支持接收和处理语音消息，通过文字回复
+- 语音识别: 支持私聊接收和处理语音消息，通过文字回复
 
 # 快速开始
 支持 Linux、MacOS、Windows 系统（可在Linux服务器上长期运行),不需安装安装任何环境,如果是本地代码运行，需要安装golang
@@ -17,8 +17,8 @@ git clone https://github.com/itxiaolin/openai-wechat.git
 cd openai-wechat
 # 修改配置(配置api_key)
 open-ai:
-  api-key: "你的api_key"
-  base-url: https://api.openai.com/v1
+    api-key: 你的api_key
+    base-url: https://api.openai.com/v1
 # 依赖下载
 go mod tidy 
 # 启动项目
@@ -40,8 +40,8 @@ logger:
   log-in-console: true
 
 open-ai:
-  api-key: ""
-  base-url: ""
+  api-key: 你的api_key
+  base-url: https://api.openai.com/v1
 
 wx-robot:
   auto-pass: true

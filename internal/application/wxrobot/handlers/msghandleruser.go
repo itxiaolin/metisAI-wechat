@@ -20,6 +20,10 @@ type UserMessageHandler struct {
 
 // handle 处理消息
 func (g *UserMessageHandler) handle(msg *openwechat.Message) error {
+	if msg.IsTickledMe() {
+		_, _ = msg.ReplyText("我在，有什麼我可以幫你的地方嗎？")
+		return nil
+	}
 	if msg.IsText() {
 		return g.ReplyText(msg)
 	}
@@ -34,30 +38,23 @@ func NewUserMessageHandler() MessageHandlerInterface {
 	return &UserMessageHandler{}
 }
 
-// ReplyText 发送文本消息到群
+// ReplyText 私聊回复
 func (g *UserMessageHandler) ReplyText(msg *openwechat.Message) error {
-	sender, err := msg.Sender()
+	sender, _ := msg.Sender()
 	self, _ := msg.Bot().GetCurrentUser()
-	logger.Debug(nil, fmt.Sprintf("Received User %v Text Msg : %v", sender.NickName, msg.Content))
+	logger.Debug(nil, fmt.Sprintf("Received NickName: %s UserName: %s Text Msg : %v", sender.NickName, sender.UserName, msg.Content),
+		zap.String("id", sender.ID()))
 	content := strings.TrimSpace(msg.Content)
 	contextKey := self.ID() + "-" + sender.UserName
 	requestText := strings.Trim(strings.TrimSpace(msg.Content), "\n")
 	if requestText == "" {
-		_, err = msg.ReplyText("很抱歉，我不太明白您想表达什么，请您再提供更多的信息或者问题，让我能够更好地为您服务。")
+		_, _ = msg.ReplyText(GetHelpText(""))
 		return nil
 	}
-	if user.Instance().ClearUserSessionContext(contextKey, content) {
-		_, err = msg.ReplyText("上下文已经清空了，你可以问下一个问题啦。")
-		if err != nil {
-			logger.Error(nil, "response user error", zap.Error(err))
-		}
-		return nil
+	if isKeywordPrefix, err := KeywordPrefixHandlerInstance().Handle(msg, "", requestText, contextKey); isKeywordPrefix {
+		return err
 	}
-	if global.Config.WxRobot.RobotKeywordPrompt.ImagePrompt != "" && strings.HasPrefix(requestText, global.Config.WxRobot.RobotKeywordPrompt.ImagePrompt) {
-		return conversation.Instance().ImagesCompletion(msg, "", content)
-	}
-	err = g.replyMsg(msg, contextKey, content)
-	if err != nil {
+	if err := g.replyMsg(msg, contextKey, content); err != nil {
 		return err
 	}
 	return nil
@@ -79,10 +76,10 @@ func (g *UserMessageHandler) ReplyVoice(msg *openwechat.Message) error {
 }
 
 func (g *UserMessageHandler) replyMsg(msg *openwechat.Message, contextKey string, content string) error {
-	completionMessages := user.Instance().BuildMessages(contextKey, systemContent, content)
+	completionMessages := user.Instance().BuildMessages(contextKey, user.Instance().GetSystemRole(contextKey), content)
 	reply, err := conversation.Instance().WxChatCompletion(global.Config.WxRobot.RetryNum, msg, "", completionMessages)
 	if err != nil || reply == "" {
-		logger.Error(nil, "gpt request error", zap.Error(err))
+		logger.Error(nil, "chat completion request error", zap.Error(err))
 		_, err = msg.ReplyText("机器人挂了，我一会儿修复一下。")
 		if err != nil {
 			logger.Error(nil, "response user error", zap.Error(err))

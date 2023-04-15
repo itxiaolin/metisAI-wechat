@@ -20,6 +20,10 @@ type GroupMessageHandler struct {
 
 // handle 处理消息
 func (g *GroupMessageHandler) handle(msg *openwechat.Message) error {
+	if msg.IsTickledMe() {
+		_, _ = msg.ReplyText("我在，有什麼我可以幫你的地方嗎？")
+		return nil
+	}
 	if msg.IsText() {
 		return g.ReplyText(msg)
 	}
@@ -33,42 +37,34 @@ func NewGroupMessageHandler() MessageHandlerInterface {
 
 // ReplyText 发送文本消息到群
 func (g *GroupMessageHandler) ReplyText(msg *openwechat.Message) error {
-	sender, err := msg.Sender()
+	sender, _ := msg.Sender()
 	group := openwechat.Group{User: sender}
 	self, _ := msg.Bot().GetCurrentUser()
-	logger.Debug(nil, "Received msg", zap.String("Group", group.NickName), zap.String("Text Msg", msg.Content))
+	logger.Debug(nil, fmt.Sprintf("Received group"), zap.String("NickName", group.NickName),
+		zap.String("UserName", group.UserName), zap.String("id", group.ID()))
 	if !msg.IsAt() {
 		return nil
 	}
-
-	groupSender, err := msg.SenderInGroup()
-	if err != nil {
-		logger.Error(nil, "get sender in group", zap.Error(err))
+	groupSender, _ := msg.SenderInGroup()
+	logger.Debug(nil, fmt.Sprintf("Received groupSender"), zap.String("NickName", groupSender.NickName),
+		zap.String("UserName", groupSender.UserName), zap.String("id", groupSender.ID()))
+	atText := "@" + groupSender.NickName + " "
+	contextKey := self.ID() + "-" + group.ID() + "-" + groupSender.UserName
+	content := strings.TrimSpace(msg.Content)
+	requestText := strings.TrimSpace(strings.ReplaceAll(content, fmt.Sprintf("@%s", self.NickName), ""))
+	if requestText == "" {
+		_, _ = msg.ReplyText(GetHelpText(atText))
+		return nil
+	}
+	if isKeywordPrefix, err := KeywordPrefixHandlerInstance().Handle(msg, atText, requestText, contextKey); isKeywordPrefix {
 		return err
 	}
-	atText := "@" + groupSender.NickName + " "
-	contextKey := self.ID() + "-" + group.NickName + "-" + groupSender.UserName
-	content := strings.TrimSpace(msg.Content)
-	if user.Instance().ClearUserSessionContext(contextKey, content) {
-		_, err = msg.ReplyText(atText + "上下文已经清空了，你可以问下一个问题啦。")
-		if err != nil {
-			logger.Error(nil, "response user error", zap.Error(err))
-		}
-		return nil
-	}
-	msgContent := strings.TrimSpace(strings.ReplaceAll(content, fmt.Sprintf("@%s", self.NickName), ""))
-	if msgContent == "" {
-		return nil
-	}
-	if global.Config.WxRobot.RobotKeywordPrompt.ImagePrompt != "" && strings.HasPrefix(msgContent, global.Config.WxRobot.RobotKeywordPrompt.ImagePrompt) {
-		return conversation.Instance().ImagesCompletion(msg, atText, content)
-	}
-	completionMessages := user.Instance().BuildMessages(contextKey, systemContent, msgContent)
+	completionMessages := user.Instance().BuildMessages(contextKey, user.Instance().GetSystemRole(contextKey), requestText)
 	logger.Info(nil, fmt.Sprintf("request chatGPT by group: %v, NickName:%s ,requestText: %v",
-		group.NickName, groupSender.NickName, msgContent), zap.String("UserName", groupSender.UserName))
+		group.NickName, groupSender.NickName, requestText), zap.String("UserName", groupSender.UserName))
 	reply, err := conversation.Instance().WxChatCompletion(global.Config.WxRobot.RetryNum, msg, atText, completionMessages)
 	if err != nil {
-		logger.Error(nil, "gpt request error", zap.Error(err))
+		logger.Error(nil, "chat completion request error", zap.Error(err))
 		_, err = msg.ReplyText("机器人神了，我一会发现了就去修。")
 		if err != nil {
 			logger.Error(nil, "response group error", zap.Error(err))
@@ -79,6 +75,6 @@ func (g *GroupMessageHandler) ReplyText(msg *openwechat.Message) error {
 		_, err = msg.ReplyText(atText + "ChatGPT现在满负荷运转,请稍后重试。")
 		return nil
 	}
-	user.Instance().SetUserSessionContext(contextKey, msgContent, reply)
+	user.Instance().SetUserSessionContext(contextKey, requestText, reply)
 	return err
 }

@@ -11,20 +11,23 @@ logger:
     log-in-console: true
 
 open-ai:
-    api-key: ""
-    base-url: ""
+    api-key: 你的api_key
+    base-url: https://api.openai.com/v1
 
 wx-robot:
-    auto-pass: true
+    aut:o-pass: true
     session-timeout: 900
     storage-path: config/storage.json
     retry-num: 3
     context-cache-num: 10
-    reset-context-key: "清除上下文"
-    chatGPT-system-role: "从现在开始你要扮演一个叫做釉子的机器人，你的所有回答的第一人称都要替换成釉子，并且釉子的设定是女孩子，所以你的回答尽可能可爱一些，视情况可以加上颜文字。"
-    chatGPT-model: "gpt-3.5-turbo"
-    robot-keyword-prompt:
+    chatGPT-model: gpt-3.5-turbo
+    voice:
+        voice-dir: config/voice
+    keyword-prefix:
         image-prompt: /image-prompt
+        system-role: /system-role
+        system-help: /system-help
+        reset-context: /reset-context
     voice:
         voice-dir: config/voice
 

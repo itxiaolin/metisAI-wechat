@@ -27,8 +27,6 @@ const (
 // handlers 所有消息类型类型的处理器
 var handlers map[HandlerType]MessageHandlerInterface
 
-var systemContent = ""
-
 func init() {
 	handlers = make(map[HandlerType]MessageHandlerInterface)
 	handlers[GroupHandler] = NewGroupMessageHandler()
@@ -51,7 +49,7 @@ func Handler(msg *openwechat.Message) {
 
 	if msg.IsFriendAdd() {
 		if global.Config.WxRobot.AutoPass {
-			_, err := msg.Agree("你好, 我是基于chatGPT引擎开发的微信机器人，你可以向我提问任何问题。")
+			_, err := msg.Agree(GetHelpText(""))
 			if err != nil {
 				logger.Error(nil, "add friend agree", zap.Error(err))
 				return

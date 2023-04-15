@@ -50,6 +50,7 @@ func (s *conversationService) WxChatCompletion(index int, msg *openwechat.Messag
 	requestBody.Messages = messages
 	response, err := tpOpenai.Instance().CreateChatCompletion(ctx, requestBody)
 	if err != nil {
+		logger.Error(nil, "WxChatCompletion request err", zap.Error(err), zap.Any("requestBody", requestBody))
 		if index > 0 {
 			time.Sleep(500 * time.Microsecond)
 			return s.WxChatCompletion(index-1, msg, atText, messages)
