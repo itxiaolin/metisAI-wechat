@@ -9,21 +9,8 @@
 
 # 使用效果
 ## 私聊
-
-### 帮助指令
-<img width="760" alt="image" src="https://user-images.githubusercontent.com/66697106/232194591-e9be7c35-5007-4ad4-a15d-16580c374d46.png">
-
-### 角色设定
-<img width="756" alt="image" src="https://user-images.githubusercontent.com/66697106/232194639-838ffeac-bd9e-4b72-9174-a06e89df021f.png">
-
-### 重置上下文
-<img width="757" alt="image" src="https://user-images.githubusercontent.com/66697106/232194671-30fbaa11-c38f-4cbf-94fc-dbf87d6eadbc.png">
-
-### 图片生成
+![image](https://user-images.githubusercontent.com/66697106/232195996-fd5cfd40-82ab-4329-95c5-ae828762cba6.png)
 <img width="746" alt="image" src="https://user-images.githubusercontent.com/66697106/232195390-29d459bc-f12b-4b78-9914-aa76d1104722.png">
-
-### 语音识别
-<img width="747" alt="image" src="https://user-images.githubusercontent.com/66697106/232194741-e681e002-e4f4-4236-88a4-c04426877d3b.png">
 
 ## 群聊
 ![image](https://user-images.githubusercontent.com/66697106/232195808-1b2acfe4-01bd-4c79-9ce4-7ca2d2a67da4.png)
