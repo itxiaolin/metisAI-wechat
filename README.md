@@ -33,44 +33,27 @@ go run main.go
 
 ## 默认配置
 ```yaml
-system:
-  appName: openai-wechat
-  pidFile: config/bin/openai-wechat.lock
-
-logger:
-  level: info
-  encoding: console
-  directory: ./config/logs
-  max-age: 14
-  show-line: true
-  log-in-console: true
-
+#只需要改open-ai，其他配置可按默认
 open-ai:
-  api-key: 你的api_key
-  base-url: https://api.openai.com/v1
+    api-key: 你的api_key
+    base-url: https://api.openai.com/v1
 
 wx-robot:
-  auto-pass: true
-  session-timeout: 900
-  storage-path: config/storage.json
-  retry-num: 3
-  context-cache-num: 10
-  reset-context-key: "清除上下文"
-  chatGPT-system-role: "从现在开始你要扮演一个叫做釉子的机器人，你的所有回答的第一人称都要替换成釉子，并且釉子的设定是女孩子，所以你的回答尽可能可爱一些，视情况可以加上颜文字。"
-  chatGPT-model: "gpt-3.5-turbo"
-  robot-keyword-prompt:
-    image-prompt: /image-prompt
-  voice:
-    voice-dir: config/voice
+    auto-pass: true
+    session-timeout: 900
+    storage-path: config/storage.json
+    retry-num: 3
+    context-cache-num: 10
+    chatGPT-model: gpt-3.5-turbo
+    voice:
+        voice-dir: config/voice
+    keyword-prefix:
+        image-prompt: /image-prompt
+        system-role: /system-role
+        system-help: /system-help
+        reset-context: /reset-context
 ```
 
-## 命令使用教程
-- ./main start  启动应用
-- ./main start -d 后台启动应用
-- ./main --config config/config.yaml start -d 指定配置文件启动
-- ./main status 查看应用启动情况
-- ./main stop 关闭应用
-- ./main restart 重启应用
 
 ## 命令使用教程
 -  metisAI-wechat start  启动应用
