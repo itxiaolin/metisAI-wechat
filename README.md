@@ -71,3 +71,16 @@ wx-robot:
 - ./main status 查看应用启动情况
 - ./main stop 关闭应用
 - ./main restart 重启应用
+
+## 命令使用教程
+-  metisAI-wechat start  启动应用
+-  metisAI-wechat start -d 后台启动应用
+-  metisAI-wechat --config config/config.yaml start -d 指定配置文件启动
+-  metisAI-wechat status 查看应用启动情况
+-  metisAI-wechat stop 关闭应用
+-  metisAI-wechat restart 重启应用
+
+## 联系
+欢迎提交PR、Issues，以及Star支持一下。如果你想了解更多项目细节，并与开发者们交流更多关于AI技术的实践，请加我好友。
+![image](https://user-images.githubusercontent.com/66697106/232264989-f6adf8ee-e7cc-4cba-8afb-6d90c3c036cb.png)
+
