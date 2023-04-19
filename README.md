@@ -18,9 +18,9 @@
 
 ```shell
 # 获取项目
-git clone https://github.com/itxiaolin/metisAi-wechat.git
+git clone https://github.com/itxiaolin/openai-wechat.git
 # 进入项目目录
-cd metisAi-wechat
+cd openai-wechat
 # 修改配置(配置api_key)
 open-ai:
     api-key: 你的api_key
@@ -33,41 +33,37 @@ go run main.go
 
 ## 默认配置
 ```yaml
-system:
-  appName: metisAi-wechat
-  pidFile: config/bin/metisAi-wechat.lock
-
-logger:
-  level: info
-  encoding: console
-  directory: ./config/logs
-  max-age: 14
-  show-line: true
-  log-in-console: true
-
+#只需要改open-ai，其他配置可按默认
 open-ai:
-  api-key: 你的api_key
-  base-url: https://api.openai.com/v1
+    api-key: 你的api_key
+    base-url: https://api.openai.com/v1
 
 wx-robot:
-  auto-pass: true
-  session-timeout: 900
-  storage-path: config/storage.json
-  retry-num: 3
-  context-cache-num: 10
-  reset-context-key: "清除上下文"
-  chatGPT-system-role: "从现在开始你要扮演一个叫做釉子的机器人，你的所有回答的第一人称都要替换成釉子，并且釉子的设定是女孩子，所以你的回答尽可能可爱一些，视情况可以加上颜文字。"
-  chatGPT-model: "gpt-3.5-turbo"
-  robot-keyword-prompt:
-    image-prompt: /image-prompt
-  voice:
-    voice-dir: config/voice
+    auto-pass: true
+    session-timeout: 900
+    storage-path: config/storage.json
+    retry-num: 3
+    context-cache-num: 10
+    chatGPT-model: gpt-3.5-turbo
+    voice:
+        voice-dir: config/voice
+    keyword-prefix:
+        image-prompt: /image-prompt
+        system-role: /system-role
+        system-help: /system-help
+        reset-context: /reset-context
 ```
 
+
 ## 命令使用教程
-- ./main start  启动应用
-- ./main start -d 后台启动应用
-- ./main --config config/config.yaml start -d 指定配置文件启动
-- ./main status 查看应用启动情况
-- ./main stop 关闭应用
-- ./main restart 重启应用
+-  metisAI-wechat start  启动应用
+-  metisAI-wechat start -d 后台启动应用
+-  metisAI-wechat --config config/config.yaml start -d 指定配置文件启动
+-  metisAI-wechat status 查看应用启动情况
+-  metisAI-wechat stop 关闭应用
+-  metisAI-wechat restart 重启应用
+
+## 联系
+欢迎提交PR、Issues，以及Star支持一下。如果你想了解更多项目细节，并与开发者们交流更多关于AI技术的实践，请加我好友。
+![image](https://user-images.githubusercontent.com/66697106/232264989-f6adf8ee-e7cc-4cba-8afb-6d90c3c036cb.png)
+
