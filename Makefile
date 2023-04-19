@@ -1,4 +1,4 @@
-BINARY      := openai-wechat
+BINARY      := metisAi-wechat
 LDFLAGS     := -ldflags "-w -s"
 ENV         :=
 

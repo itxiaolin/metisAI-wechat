@@ -4,10 +4,10 @@ import (
 	"context"
 	"fmt"
 	"github.com/eatmoreapple/openwechat"
-	"github.com/itxiaolin/openai-wechat/internal/application/wxrobot/handlers"
-	"github.com/itxiaolin/openai-wechat/internal/core/application/worker"
-	"github.com/itxiaolin/openai-wechat/internal/core/logger"
-	"github.com/itxiaolin/openai-wechat/internal/global"
+	"github.com/itxiaolin/metisAi-wechat/internal/application/wxrobot/handlers"
+	"github.com/itxiaolin/metisAi-wechat/internal/core/application/worker"
+	"github.com/itxiaolin/metisAi-wechat/internal/core/logger"
+	"github.com/itxiaolin/metisAi-wechat/internal/global"
 	"github.com/skip2/go-qrcode"
 	"go.uber.org/zap"
 	"runtime"
@@ -63,10 +63,6 @@ func (r *robotEngine) DefaultBot(prepares ...openwechat.BotPreparer) *openwechat
 	// 心跳回调函数,默认的行为打印SyncCheckResponse
 	bot.SyncCheckCallback = func(resp openwechat.SyncCheckResponse) {
 		logger.Info(nil, "心跳函数，", zap.String("uuid", bot.UUID()), zap.String("RetCode", resp.RetCode))
-		if resp.RetCode == "1101" {
-			logger.Error(nil, "机器人已掉线，主动退出登录")
-			_ = bot.Logout()
-		}
 	}
 	for _, prepare := range prepares {
 		prepare.Prepare(bot)

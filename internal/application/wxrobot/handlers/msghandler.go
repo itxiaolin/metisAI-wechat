@@ -2,8 +2,8 @@ package handlers
 
 import (
 	"github.com/eatmoreapple/openwechat"
-	"github.com/itxiaolin/openai-wechat/internal/core/logger"
-	"github.com/itxiaolin/openai-wechat/internal/global"
+	"github.com/itxiaolin/metisAi-wechat/internal/core/logger"
+	"github.com/itxiaolin/metisAi-wechat/internal/global"
 	"go.uber.org/zap"
 )
 

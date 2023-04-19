@@ -1,6 +1,6 @@
 package config
 
-import "github.com/itxiaolin/openai-wechat/internal/core/logger"
+import "github.com/itxiaolin/metisAi-wechat/internal/core/logger"
 
 type Config struct {
 	System  System      `mapstructure:"system" json:"system" yaml:"system"`

@@ -3,9 +3,9 @@ package app
 import (
 	"bytes"
 	"fmt"
-	"github.com/itxiaolin/openai-wechat/internal/cfg"
-	"github.com/itxiaolin/openai-wechat/internal/core/logger"
-	"github.com/itxiaolin/openai-wechat/internal/global"
+	"github.com/itxiaolin/metisAi-wechat/internal/cfg"
+	"github.com/itxiaolin/metisAi-wechat/internal/core/logger"
+	"github.com/itxiaolin/metisAi-wechat/internal/global"
 	"github.com/spf13/cobra"
 	"os"
 	"path/filepath"
@@ -15,7 +15,7 @@ import (
 var _cfgFile, _exeName string
 
 var RootCmd = &cobra.Command{
-	Use: "openai-wechat",
+	Use: "metisAi-wechat",
 	RunE: func(c *cobra.Command, args []string) error {
 		return c.Usage()
 	},

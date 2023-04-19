@@ -2,10 +2,10 @@ package handlers
 
 import (
 	"fmt"
-	"github.com/itxiaolin/openai-wechat/internal/application/wxrobot/services/conversation"
-	"github.com/itxiaolin/openai-wechat/internal/application/wxrobot/services/user"
-	"github.com/itxiaolin/openai-wechat/internal/core/logger"
-	"github.com/itxiaolin/openai-wechat/internal/global"
+	"github.com/itxiaolin/metisAi-wechat/internal/application/wxrobot/services/conversation"
+	"github.com/itxiaolin/metisAi-wechat/internal/application/wxrobot/services/user"
+	"github.com/itxiaolin/metisAi-wechat/internal/core/logger"
+	"github.com/itxiaolin/metisAi-wechat/internal/global"
 	"strings"
 
 	"github.com/eatmoreapple/openwechat"
@@ -50,8 +50,7 @@ func (g *GroupMessageHandler) ReplyText(msg *openwechat.Message) error {
 		zap.String("UserName", groupSender.UserName), zap.String("id", groupSender.ID()))
 	atText := "@" + groupSender.NickName + " "
 	contextKey := self.ID() + "-" + group.ID() + "-" + groupSender.UserName
-	content := strings.TrimSpace(msg.Content)
-	requestText := strings.TrimSpace(strings.ReplaceAll(content, fmt.Sprintf("@%s", self.NickName), ""))
+	requestText := strings.TrimSpace(strings.ReplaceAll(strings.TrimSpace(msg.Content), fmt.Sprintf("@%s", self.NickName), ""))
 	if requestText == "" {
 		_, _ = msg.ReplyText(GetHelpText(atText))
 		return nil

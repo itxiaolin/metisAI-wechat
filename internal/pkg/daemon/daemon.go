@@ -4,7 +4,7 @@ import (
 	"crypto/sha1"
 	"encoding/hex"
 	"fmt"
-	"github.com/itxiaolin/openai-wechat/internal/pkg/system"
+	"github.com/itxiaolin/metisAi-wechat/internal/pkg/system"
 	"os"
 	"strconv"
 	"strings"

@@ -5,14 +5,14 @@ import (
 	"context"
 	"fmt"
 	"github.com/go-resty/resty/v2"
-	"github.com/itxiaolin/openai-wechat/internal/core/logger"
-	"github.com/itxiaolin/openai-wechat/internal/global"
+	"github.com/itxiaolin/metisAi-wechat/internal/core/logger"
+	"github.com/itxiaolin/metisAi-wechat/internal/global"
 	"os"
 	"sync"
 	"time"
 
 	"github.com/eatmoreapple/openwechat"
-	tpOpenai "github.com/itxiaolin/openai-wechat/third_party/openai"
+	tpOpenai "github.com/itxiaolin/metisAi-wechat/third_party/openai"
 	"github.com/sashabaranov/go-openai"
 	"go.uber.org/zap"
 )

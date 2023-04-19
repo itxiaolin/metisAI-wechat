@@ -2,8 +2,8 @@ package worker
 
 import (
 	"fmt"
-	"github.com/itxiaolin/openai-wechat/internal/core/application"
-	"github.com/itxiaolin/openai-wechat/internal/core/logger"
+	"github.com/itxiaolin/metisAi-wechat/internal/core/application"
+	"github.com/itxiaolin/metisAi-wechat/internal/core/logger"
 	"go.uber.org/zap"
 	"sync"
 )

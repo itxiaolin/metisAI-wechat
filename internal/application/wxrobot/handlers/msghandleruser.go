@@ -2,10 +2,10 @@ package handlers
 
 import (
 	"fmt"
-	"github.com/itxiaolin/openai-wechat/internal/application/wxrobot/services/conversation"
-	"github.com/itxiaolin/openai-wechat/internal/application/wxrobot/services/user"
-	"github.com/itxiaolin/openai-wechat/internal/core/logger"
-	"github.com/itxiaolin/openai-wechat/internal/global"
+	"github.com/itxiaolin/metisAi-wechat/internal/application/wxrobot/services/conversation"
+	"github.com/itxiaolin/metisAi-wechat/internal/application/wxrobot/services/user"
+	"github.com/itxiaolin/metisAi-wechat/internal/core/logger"
+	"github.com/itxiaolin/metisAi-wechat/internal/global"
 	"strings"
 
 	"github.com/eatmoreapple/openwechat"
@@ -45,7 +45,7 @@ func (g *UserMessageHandler) ReplyText(msg *openwechat.Message) error {
 	logger.Debug(nil, fmt.Sprintf("Received NickName: %s UserName: %s Text Msg : %v", sender.NickName, sender.UserName, msg.Content),
 		zap.String("id", sender.ID()))
 	content := strings.TrimSpace(msg.Content)
-	contextKey := self.ID() + "-" + sender.UserName
+	contextKey := self.ID() + "-" + sender.ID()
 	requestText := strings.Trim(strings.TrimSpace(msg.Content), "\n")
 	if requestText == "" {
 		_, _ = msg.ReplyText(GetHelpText(""))

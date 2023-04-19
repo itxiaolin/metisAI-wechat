@@ -1,6 +1,6 @@
 system:
-    appName: openai-wechat
-    pidFile: config/bin/openai-wechat.lock
+    appName: metisAi-wechat
+    pidFile: config/bin/metisAi-wechat.lock
 
 logger:
     level: info
@@ -15,7 +15,7 @@ open-ai:
     base-url: https://api.openai.com/v1
 
 wx-robot:
-    aut:o-pass: true
+    auto-pass: true
     session-timeout: 900
     storage-path: config/storage.json
     retry-num: 3
@@ -28,6 +28,4 @@ wx-robot:
         system-role: /system-role
         system-help: /system-help
         reset-context: /reset-context
-    voice:
-        voice-dir: config/voice
 

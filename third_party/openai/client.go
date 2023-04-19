@@ -1,7 +1,7 @@
 package openai
 
 import (
-	"github.com/itxiaolin/openai-wechat/internal/global"
+	"github.com/itxiaolin/metisAi-wechat/internal/global"
 	"sync"
 
 	openai "github.com/sashabaranov/go-openai"

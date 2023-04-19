@@ -1,7 +1,7 @@
 package global
 
 import (
-	"github.com/itxiaolin/openai-wechat/config"
+	"github.com/itxiaolin/metisAi-wechat/config"
 )
 
 var (

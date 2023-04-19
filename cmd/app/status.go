@@ -2,7 +2,7 @@ package app
 
 import (
 	"fmt"
-	"github.com/itxiaolin/openai-wechat/internal/pkg/pidfile"
+	"github.com/itxiaolin/metisAi-wechat/internal/pkg/pidfile"
 	"github.com/spf13/cobra"
 	"os"
 )

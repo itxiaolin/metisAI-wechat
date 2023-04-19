@@ -1,7 +1,7 @@
 package main
 
 import (
-	"github.com/itxiaolin/openai-wechat/cmd/app"
+	"github.com/itxiaolin/metisAi-wechat/cmd/app"
 )
 
 func main() {

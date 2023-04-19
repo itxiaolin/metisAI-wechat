@@ -3,8 +3,8 @@ package app
 import (
 	"errors"
 	"fmt"
-	"github.com/itxiaolin/openai-wechat/internal/pkg/pidfile"
-	"github.com/itxiaolin/openai-wechat/internal/pkg/system"
+	"github.com/itxiaolin/metisAi-wechat/internal/pkg/pidfile"
+	"github.com/itxiaolin/metisAi-wechat/internal/pkg/system"
 	"github.com/spf13/cobra"
 )
 

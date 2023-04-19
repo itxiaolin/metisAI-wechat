@@ -2,9 +2,9 @@ package pidfile
 
 import (
 	"fmt"
-	"github.com/itxiaolin/openai-wechat/internal/core/logger"
-	"github.com/itxiaolin/openai-wechat/internal/global"
-	"github.com/itxiaolin/openai-wechat/internal/pkg/system"
+	"github.com/itxiaolin/metisAi-wechat/internal/core/logger"
+	"github.com/itxiaolin/metisAi-wechat/internal/global"
+	"github.com/itxiaolin/metisAi-wechat/internal/pkg/system"
 	"go.uber.org/zap"
 	"os"
 	"path/filepath"

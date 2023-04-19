@@ -3,9 +3,9 @@ package app
 import (
 	"errors"
 	"fmt"
-	"github.com/itxiaolin/openai-wechat/internal/cfg"
-	"github.com/itxiaolin/openai-wechat/internal/core/logger"
-	"github.com/itxiaolin/openai-wechat/internal/global"
+	"github.com/itxiaolin/metisAi-wechat/internal/cfg"
+	"github.com/itxiaolin/metisAi-wechat/internal/core/logger"
+	"github.com/itxiaolin/metisAi-wechat/internal/global"
 	"github.com/spf13/cobra"
 	"os"
 	"os/signal"

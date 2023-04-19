@@ -1,9 +1,9 @@
-module github.com/itxiaolin/openai-wechat
+module github.com/itxiaolin/metisAi-wechat
 
 go 1.20
 
 require (
-	github.com/eatmoreapple/openwechat v1.4.1
+	github.com/eatmoreapple/openwechat v1.4.2
 	github.com/go-resty/resty/v2 v2.7.0
 	github.com/natefinch/lumberjack v2.0.0+incompatible
 	github.com/patrickmn/go-cache v2.1.0+incompatible

@@ -1,9 +1,9 @@
 package user
 
 import (
-	"github.com/itxiaolin/openai-wechat/internal/constants"
-	"github.com/itxiaolin/openai-wechat/internal/domains"
-	"github.com/itxiaolin/openai-wechat/internal/global"
+	"github.com/itxiaolin/metisAi-wechat/internal/constants"
+	"github.com/itxiaolin/metisAi-wechat/internal/domains"
+	"github.com/itxiaolin/metisAi-wechat/internal/global"
 	"github.com/patrickmn/go-cache"
 	"github.com/sashabaranov/go-openai"
 	"sync"

@@ -3,7 +3,7 @@ package openai
 import (
 	"context"
 	"fmt"
-	"github.com/itxiaolin/openai-wechat/internal/global"
+	"github.com/itxiaolin/metisAi-wechat/internal/global"
 	"github.com/sashabaranov/go-openai"
 	"testing"
 )

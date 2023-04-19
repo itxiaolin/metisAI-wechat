@@ -18,9 +18,9 @@
 
 ```shell
 # 获取项目
-git clone https://github.com/itxiaolin/openai-wechat.git
+git clone https://github.com/itxiaolin/metisAi-wechat.git
 # 进入项目目录
-cd openai-wechat
+cd metisAi-wechat
 # 修改配置(配置api_key)
 open-ai:
     api-key: 你的api_key
@@ -34,8 +34,8 @@ go run main.go
 ## 默认配置
 ```yaml
 system:
-  appName: openai-wechat
-  pidFile: config/bin/openai-wechat.lock
+  appName: metisAi-wechat
+  pidFile: config/bin/metisAi-wechat.lock
 
 logger:
   level: info
