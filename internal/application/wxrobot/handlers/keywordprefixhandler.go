@@ -129,17 +129,26 @@ func (r *SystemRoleHandler) Handle(msg *openwechat.Message, atText, requestText,
 
 func GetHelpText(atText string) string {
 	return fmt.Sprintf("%s\n"+
-		"我是基于chatGPT引擎开发的微信机器人，你可以向我提问任何问题。\n"+
+		"我是由Métis团队开发的微信机器人，你可以向我提问任何问题。\n"+
 		"@机器人: 你可以在群聊中@我进行交互，我会及时回复哦 🤖。\n"+
 		"私聊语音: 发送语音消息，我也能够接收并回复文字消息\n"+
 		"关键词: 输入关键词以触发更多功能\n"+
 		"%s : 查看帮助提示。\n"+
 		"%s : 重置对话上下文语境。\n"+
-		"%s : 支持自定义chatGPT的system角色，可指定聊天时的角色\n"+
+		"%s : 支持自定义角色，可指定聊天时的角色\n"+
 		"%s : 支持根据描述生成图片\n",
-		atText,
+		"atText",
 		global.Config.WxRobot.KeywordPrefix.SystemHelp,
 		global.Config.WxRobot.KeywordPrefix.ResetContext,
 		global.Config.WxRobot.KeywordPrefix.SystemRole,
 		global.Config.WxRobot.KeywordPrefix.ImagePrompt)
+}
+
+func GetPaiYiPaiText(atText string) string {
+	msg := fmt.Sprintf("%s我在，有什么我可以帮到您的吗？\n"+
+		"我是由Métis团队开发的微信机器人，你可以向我提问任何问题。\n"+
+		"%s : 查看帮助提示。\n",
+		atText,
+		global.Config.WxRobot.KeywordPrefix.SystemHelp)
+	return msg
 }

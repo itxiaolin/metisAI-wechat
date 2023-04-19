@@ -6,6 +6,7 @@ import (
 	"github.com/itxiaolin/metisAi-wechat/internal/application/wxrobot/services/user"
 	"github.com/itxiaolin/metisAi-wechat/internal/core/logger"
 	"github.com/itxiaolin/metisAi-wechat/internal/global"
+	"regexp"
 	"strings"
 
 	"github.com/eatmoreapple/openwechat"
@@ -20,8 +21,15 @@ type GroupMessageHandler struct {
 
 // handle 处理消息
 func (g *GroupMessageHandler) handle(msg *openwechat.Message) error {
-	if msg.IsTickledMe() {
-		_, _ = msg.ReplyText("我在，有什麼我可以幫你的地方嗎？")
+	if IsTickledMe(msg) {
+		re := regexp.MustCompile(`「(.*?)」`)
+		match := re.FindStringSubmatch(msg.Content)
+		if len(match) > 1 {
+			fmt.Println(match[1])
+			_, _ = msg.ReplyText(GetPaiYiPaiText("@" + match[1]))
+		} else {
+			_, _ = msg.ReplyText(GetPaiYiPaiText(" "))
+		}
 		return nil
 	}
 	if msg.IsText() {

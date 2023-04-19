@@ -20,8 +20,8 @@ type UserMessageHandler struct {
 
 // handle 处理消息
 func (g *UserMessageHandler) handle(msg *openwechat.Message) error {
-	if msg.IsTickledMe() {
-		_, _ = msg.ReplyText("我在，有什麼我可以幫你的地方嗎？")
+	if IsTickledMe(msg) {
+		_, _ = msg.ReplyText(GetPaiYiPaiText(" "))
 		return nil
 	}
 	if msg.IsText() {

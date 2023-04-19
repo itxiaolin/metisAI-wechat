@@ -5,6 +5,7 @@ import (
 	"github.com/itxiaolin/metisAi-wechat/internal/core/logger"
 	"github.com/itxiaolin/metisAi-wechat/internal/global"
 	"go.uber.org/zap"
+	"strings"
 )
 
 // MessageHandlerInterface 消息处理接口
@@ -58,4 +59,8 @@ func Handler(msg *openwechat.Message) {
 	}
 
 	go handlers[UserHandler].handle(msg)
+}
+
+func IsTickledMe(m *openwechat.Message) bool {
+	return m.IsSystem() && (strings.Count(m.Content, "拍了拍我") == 1 || strings.Count(m.Content, "拍拍我") == 1)
 }
