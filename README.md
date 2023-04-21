@@ -67,7 +67,8 @@ wx-robot:
 ## 联系
 欢迎提交PR、Issues，以及Star支持一下。如果你想了解更多项目细节，并与开发者们交流更多关于AI技术的实践，请加我好友。
 
-<img width="308" alt="image" src="https://user-images.githubusercontent.com/66697106/233577464-6de62c01-4fa2-4b33-88ea-ab169dadd24c.png">
+https://t.zsxq.com/0dktcrDGr
+<img width="294" alt="image" src="https://user-images.githubusercontent.com/66697106/233578572-aaeebdb9-eed8-45ca-9cd7-b667a5834996.png">
+<img width="322" alt="image" src="https://user-images.githubusercontent.com/66697106/233578749-e72776e5-8343-4107-bc76-70fe6ec0d819.png">
 
-![image](https://user-images.githubusercontent.com/66697106/233577782-8f79379a-8b9d-4441-b351-52fde27c08cb.png)
 
