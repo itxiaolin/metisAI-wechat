@@ -19,7 +19,7 @@
 
 ```shell
 # 获取项目
-git clone https://github.com/itxiaolin/openai-wechat.git
+git clone https://github.com/itxiaolin/metisAI-wechat.git
 # 进入项目目录
 cd openai-wechat
 # 修改配置(配置api_key)
@@ -67,4 +67,8 @@ wx-robot:
 ## 联系
 欢迎提交PR、Issues，以及Star支持一下。如果你想了解更多项目细节，并与开发者们交流更多关于AI技术的实践，请加我好友。
 ![image](https://user-images.githubusercontent.com/66697106/232264989-f6adf8ee-e7cc-4cba-8afb-6d90c3c036cb.png)
+
+<img width="308" alt="image" src="https://user-images.githubusercontent.com/66697106/233577464-6de62c01-4fa2-4b33-88ea-ab169dadd24c.png">
+
+![image](https://user-images.githubusercontent.com/66697106/233577782-8f79379a-8b9d-4441-b351-52fde27c08cb.png)
 
