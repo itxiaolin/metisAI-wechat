@@ -67,10 +67,9 @@ wx-robot:
 ## 联系
 欢迎提交PR、Issues，以及Star支持一下。如果你想了解更多项目细节，并与开发者们交流更多关于AI技术的实践，请加我好友。
 
-优惠卷地址：https://t.zsxq.com/0dktcrDGr
 
-<img width="322" alt="image" src="https://user-images.githubusercontent.com/66697106/233578572-aaeebdb9-eed8-45ca-9cd7-b667a5834996.png">
 
-<img width="322" alt="image" src="https://user-images.githubusercontent.com/66697106/233578749-e72776e5-8343-4107-bc76-70fe6ec0d819.png">
+![公众号](https://user-images.githubusercontent.com/66697106/233816042-9fafde9b-411c-4cc2-8fdb-cc2e86201163.png)
+
 
 
