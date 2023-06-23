@@ -5,6 +5,7 @@
 - [x] **角色扮演：** 支持自定义chatGPT的system角色，通过默认前缀/system-role可指定聊天时的角色
 - [x] **图片生成：** 支持根据描述生成图片，默认前缀/image-prompt，支持修改配置
 - [x] **语音识别：** 支持私聊接收和处理语音消息，通过文字回复
+- [x] **拍一拍：** 支持拍一拍功能，回复提示语
 
 # 使用效果
 ## 私聊
@@ -18,7 +19,7 @@
 
 ```shell
 # 获取项目
-git clone https://github.com/itxiaolin/openai-wechat.git
+git clone https://github.com/itxiaolin/metisAI-wechat.git
 # 进入项目目录
 cd openai-wechat
 # 修改配置(配置api_key)
@@ -65,5 +66,10 @@ wx-robot:
 
 ## 联系
 欢迎提交PR、Issues，以及Star支持一下。如果你想了解更多项目细节，并与开发者们交流更多关于AI技术的实践，请加我好友。
-![image](https://user-images.githubusercontent.com/66697106/232264989-f6adf8ee-e7cc-4cba-8afb-6d90c3c036cb.png)
+
+
+
+![公众号](https://user-images.githubusercontent.com/66697106/233816042-9fafde9b-411c-4cc2-8fdb-cc2e86201163.png)
+
+
 
